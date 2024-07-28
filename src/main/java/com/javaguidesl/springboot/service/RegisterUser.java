@@ -1,9 +1,8 @@
-package com.javaguidesl.springboot.services;
+package com.javaguidesl.springboot.service;
 
 import com.javaguidesl.springboot.dto.request.registration.UserRegistrationDTO;
 
 import com.javaguidesl.springboot.exception.BadRequestException;
-import com.javaguidesl.springboot.exception.ParseException;
 import com.javaguidesl.springboot.validator.Response;
 import com.javaguidesl.springboot.validator.ValidatorFactory;
 import org.springframework.beans.factory.annotation.Autowired;

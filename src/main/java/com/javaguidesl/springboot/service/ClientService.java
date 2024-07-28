@@ -1,4 +1,4 @@
-package com.javaguidesl.springboot.services;
+package com.javaguidesl.springboot.service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.javaguidesl.springboot.dto.request.serverstatus.ServerStatusRequest;

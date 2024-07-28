@@ -17,20 +17,14 @@ public class XMLResponse {
 }
 
 class BodyRes {
-
-    @JacksonXmlElementWrapper(localName = "FindUsers")
-    @JacksonXmlProperty(localName = "FindUser")
-    private List<FindUserRes> findUser;
+    @JacksonXmlElementWrapper(localName = "Users")
+    @JacksonXmlProperty(localName = "UserName")
+    private List<FindUserRes> userName;
     public BodyRes(){}
 }
 
 class FindUserRes {
-
-    @JacksonXmlProperty(localName = "SAMAccountName")
-    private String samaccountName;
-
+    @JacksonXmlProperty(localName = "UserName")
+    private String userName;
     public FindUserRes(){}
-    public String getSAMAccountName() {
-        return samaccountName;
-    }
 }
