@@ -1,42 +1,44 @@
 package com.javaguidesl.springboot.controller;
 
-import com.javaguidesl.springboot.dto.request.serverstatus.ServerStatusRequest;
-import com.javaguidesl.springboot.validator.Response;
-import com.javaguidesl.springboot.services.IService;
-import com.javaguidesl.springboot.validator.IValidator;
+import com.javaguidesl.springboot.exception.BadRequestException;
+import com.javaguidesl.springboot.exception.GlobalExceptionHandler;
+import com.javaguidesl.springboot.exception.ParseException;
+import com.javaguidesl.springboot.services.ServiceFactory;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
-import java.util.Map;
 
 @RestController
+@RequestMapping("/api/v1")
 public class ServerController {
 
     @Autowired
-    private IService service;
+    private ServiceFactory service;
 
-    @Autowired
-    private IValidator validator;
-
-    @RequestMapping(value = "/server/status", method = RequestMethod.POST, produces = "application/json", consumes = "application/json")
-    public ResponseEntity<String> getServerStatus(@Valid @RequestBody String message) {
+    @GetMapping(value = "/server/status/", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<String> getServerStatus() {
         try {
-            Response validatorResponse = validator.validateRequest(message,new ServerStatusRequest());
-            if (!validatorResponse.isStatus()) {
-                return new ResponseEntity<String>(validatorResponse.toJson(), HttpStatus.BAD_REQUEST);
-            }
-            ServerStatusRequest jsonRequest = (ServerStatusRequest) validatorResponse.getObj();
-            String response = service.processRequest(jsonRequest);
+            String response = service.getService("ClientService").processRequest("");
             return new ResponseEntity<String>(response, HttpStatus.OK);
         } catch (Exception e){
             return new ResponseEntity<String>(String.format("{\"errorMessage\": \"%s\"}", e.getMessage()), HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @PostMapping(value = "/users/register/", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<String> registerUser(@Valid @RequestBody String message) throws BadRequestException {
+        try {
+            return new ResponseEntity<String>(service.getService("RegisterUser").processRequest(message), HttpStatus.OK);
+        } catch (BadRequestException e) {
+            return new GlobalExceptionHandler().handleBadRequestException(e);
+        } catch (ParseException e) {
+            return new GlobalExceptionHandler().handleParseException(e);
+         } catch (Exception e){
+            return new GlobalExceptionHandler().handleException(e);
         }
     }
 }

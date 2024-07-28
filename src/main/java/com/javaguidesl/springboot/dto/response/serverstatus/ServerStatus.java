@@ -6,21 +6,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class ServerStatus {
 
-    @JsonProperty(value = "serverName" ,required = true)
-    private String serverName;
-
     @JsonProperty(value = "status" ,required = true)
     private String status;
 
     public ServerStatus() {}
-
-    public String getServerName() {
-        return serverName;
-    }
-
-    public void setServerName(String serverName) {
-        this.serverName = serverName;
-    }
 
     public String getStatus() {
         return status;
