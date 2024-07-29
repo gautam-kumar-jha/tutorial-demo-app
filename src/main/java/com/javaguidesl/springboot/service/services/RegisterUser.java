@@ -1,15 +1,15 @@
-package com.javaguidesl.springboot.service;
+package com.javaguidesl.springboot.service.services;
 
 import com.javaguidesl.springboot.dto.request.registration.UserRegistrationDTO;
 
 import com.javaguidesl.springboot.exception.BadRequestException;
-import com.javaguidesl.springboot.validator.Response;
+import com.javaguidesl.springboot.service.Service;
+import com.javaguidesl.springboot.validator.validators.Response;
 import com.javaguidesl.springboot.validator.ValidatorFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
-@Service("RegisterUser")
-public class RegisterUser implements IService{
+@org.springframework.stereotype.Service("RegisterUser")
+public class RegisterUser implements Service {
 
     @Autowired
     private ValidatorFactory validator;

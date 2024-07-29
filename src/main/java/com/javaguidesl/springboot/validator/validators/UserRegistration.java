@@ -1,20 +1,21 @@
-package com.javaguidesl.springboot.validator;
+package com.javaguidesl.springboot.validator.validators;
 
 import com.javaguidesl.springboot.dto.request.registration.UserRegistrationDTO;
 import com.javaguidesl.springboot.exception.ParseException;
+import com.javaguidesl.springboot.validator.Validator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.BeanPropertyBindingResult;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.Validator;
+
 import java.util.ArrayList;
 import java.util.List;
 
 @Component("UserRegistration")
-public class UserRegistration implements IValidator<UserRegistrationDTO> {
+public class UserRegistration implements Validator<UserRegistrationDTO> {
 
     @Autowired
-    private Validator validator;
+    private org.springframework.validation.Validator validator;
 
     @Override
     public Response validateRequest(String readMessage, UserRegistrationDTO reqBody) throws Exception {

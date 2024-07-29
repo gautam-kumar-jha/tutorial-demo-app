@@ -10,7 +10,7 @@ public class ValidatorFactory {
     @Autowired
     private ApplicationContext context;
 
-    public IValidator getValidator(String name) {
-        return (IValidator) context.getBean(name);
+    public Validator getValidator(String name) {
+        return (Validator) context.getBean(name);
     }
 }

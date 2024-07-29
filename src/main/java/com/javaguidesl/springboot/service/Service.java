@@ -1,5 +1,5 @@
 package com.javaguidesl.springboot.service;
 
-public interface IService {
+public interface Service {
     public String processRequest(String message) throws Exception;
 }

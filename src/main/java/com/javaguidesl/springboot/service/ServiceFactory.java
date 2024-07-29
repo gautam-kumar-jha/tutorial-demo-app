@@ -10,7 +10,7 @@ public class ServiceFactory {
     @Autowired
     private ApplicationContext context;
 
-    public IService getService(String serviceName) {
-        return (IService) context.getBean(serviceName);
+    public Service getService(String serviceName) {
+        return (Service) context.getBean(serviceName);
     }
 }

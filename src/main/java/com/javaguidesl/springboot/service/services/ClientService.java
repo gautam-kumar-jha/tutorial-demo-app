@@ -1,12 +1,11 @@
-package com.javaguidesl.springboot.service;
+package com.javaguidesl.springboot.service.services;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.javaguidesl.springboot.dto.request.serverstatus.ServerStatusRequest;
 import com.javaguidesl.springboot.dto.response.serverstatus.ServerStatus;
-import org.springframework.stereotype.Service;
+import com.javaguidesl.springboot.service.Service;
 
-@Service("ClientService")
-public class ClientService implements IService {
+@org.springframework.stereotype.Service("ClientService")
+public class ClientService implements Service {
     @Override
     public String processRequest(String message) {
         try {

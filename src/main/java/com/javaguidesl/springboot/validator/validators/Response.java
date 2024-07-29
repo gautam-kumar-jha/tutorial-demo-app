@@ -1,4 +1,4 @@
-package com.javaguidesl.springboot.validator;
+package com.javaguidesl.springboot.validator.validators;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
