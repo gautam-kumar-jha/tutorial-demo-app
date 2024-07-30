@@ -20,6 +20,13 @@ public class ServerController {
     @Autowired
     private ServiceFactory service;
 
+
+    @GetMapping("/hello")
+    public String hello() {
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        return "Hello, " + username + "!";
+    }
+
     @GetMapping(value = "/server/status/", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<String> getServerStatus() {
         try {
