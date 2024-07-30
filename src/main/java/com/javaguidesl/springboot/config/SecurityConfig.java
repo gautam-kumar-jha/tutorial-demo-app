@@ -17,8 +17,7 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         Set<String> allowedSubjectNames = new HashSet<>();
-        allowedSubjectNames.add("CN=allowed-subject-1");
-        allowedSubjectNames.add("CN=allowed-subject-2");
+        allowedSubjectNames.add("CN = client");
         http
                 .authorizeHttpRequests(authorize -> authorize
                         .anyRequest().authenticated()
