@@ -1,7 +1,7 @@
 package com.javaguidesl.springboot.validator.validators;
 
 import com.javaguidesl.springboot.dto.request.registration.UserRegistrationDTO;
-import com.javaguidesl.springboot.exception.ParseException;
+import com.javaguidesl.springboot.exception.exceptions.ParseException;
 import com.javaguidesl.springboot.validator.Validator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

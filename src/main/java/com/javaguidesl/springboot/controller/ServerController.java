@@ -1,8 +1,8 @@
 package com.javaguidesl.springboot.controller;
 
-import com.javaguidesl.springboot.exception.BadRequestException;
+import com.javaguidesl.springboot.exception.exceptions.BadRequestException;
 import com.javaguidesl.springboot.exception.GlobalExceptionHandler;
-import com.javaguidesl.springboot.exception.ParseException;
+import com.javaguidesl.springboot.exception.exceptions.ParseException;
 import com.javaguidesl.springboot.service.ServiceFactory;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;

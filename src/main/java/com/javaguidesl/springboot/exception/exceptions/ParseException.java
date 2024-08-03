@@ -1,4 +1,4 @@
-package com.javaguidesl.springboot.exception;
+package com.javaguidesl.springboot.exception.exceptions;
 
 public class ParseException extends RuntimeException{
 
