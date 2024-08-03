@@ -28,7 +28,12 @@ public class CertificateValidationFilter extends OncePerRequestFilter {
     }
 
     private boolean validateCertificateSubject(String subject) {
-        return subject.contains("CN=client");
+        String[] subjectLine = {"CN=gautam, OU=tutorial", "CN=gautam, OU=tutorial, O=tutorial, L=Noida, ST=UP, C=TT", "CN=client"};
+        for (String name : subjectLine) {
+            if(name.equals(subject))
+                return true;
+        }
+        return false;
     }
 
 }
