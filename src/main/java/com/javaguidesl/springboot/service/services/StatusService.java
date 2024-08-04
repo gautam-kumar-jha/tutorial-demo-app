@@ -5,7 +5,7 @@ import com.javaguidesl.springboot.dto.response.serverstatus.ServerStatus;
 import com.javaguidesl.springboot.service.Service;
 
 @org.springframework.stereotype.Service("ClientService")
-public class ClientService implements Service {
+public class StatusService implements Service {
     @Override
     public String processRequest(String message) {
         try {
