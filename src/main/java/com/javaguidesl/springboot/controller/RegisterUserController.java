@@ -1,7 +1,7 @@
 package com.javaguidesl.springboot.controller;
 
-import com.javaguidesl.springboot.exception.exceptions.BadRequestException;
 import com.javaguidesl.springboot.exception.GlobalExceptionHandler;
+import com.javaguidesl.springboot.exception.exceptions.BadRequestException;
 import com.javaguidesl.springboot.exception.exceptions.ParseException;
 import com.javaguidesl.springboot.service.ServiceFactory;
 import jakarta.validation.Valid;
@@ -9,33 +9,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.web.bind.annotation.*;
-
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/v1")
-public class ServerController {
+public class RegisterUserController {
 
     @Autowired
     private ServiceFactory service;
-
-
-    @GetMapping("/hello")
-    public String hello() {
-        String username = SecurityContextHolder.getContext().getAuthentication().getName();
-        return "Hello, " + username + "!";
-    }
-
-    @GetMapping(value = "/server/status/", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<String> getServerStatus() {
-        try {
-            String response = service.getService("ClientService").processRequest("");
-            return new ResponseEntity<String>(response, HttpStatus.OK);
-        } catch (Exception e){
-            return new ResponseEntity<String>(String.format("{\"errorMessage\": \"%s\"}", e.getMessage()), HttpStatus.BAD_REQUEST);
-        }
-    }
 
     @PostMapping(value = "/users/register/", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<String> registerUser(@Valid @RequestBody String message) throws BadRequestException {
@@ -45,8 +29,9 @@ public class ServerController {
             return new GlobalExceptionHandler().handleBadRequestException(e);
         } catch (ParseException e) {
             return new GlobalExceptionHandler().handleParseException(e);
-         } catch (Exception e){
+        } catch (Exception e){
             return new GlobalExceptionHandler().handleException(e);
         }
     }
+
 }
