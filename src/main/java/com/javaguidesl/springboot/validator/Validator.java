@@ -5,7 +5,6 @@ import org.springframework.stereotype.Component;
 
 @Component
 public interface Validator<T> {
-
-
+    
     public Response validateRequest(String reqBody, T t) throws Exception;
 }

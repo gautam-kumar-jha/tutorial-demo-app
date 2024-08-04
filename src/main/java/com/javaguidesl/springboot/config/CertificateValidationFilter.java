@@ -1,9 +1,12 @@
 package com.javaguidesl.springboot.config;
 
 import com.javaguidesl.springboot.exception.exceptions.CertificateSubjectInvalidException;
+
+import jakarta.servlet.FilterChain;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.lang.NonNull;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.filter.OncePerRequestFilter;
 import java.io.IOException;
@@ -15,7 +18,7 @@ import java.util.Arrays;
 public class CertificateValidationFilter extends OncePerRequestFilter {
 
     @Override
-    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, jakarta.servlet.FilterChain filterChain) throws jakarta.servlet.ServletException, IOException {
+    protected void doFilterInternal(@NonNull HttpServletRequest request, @NonNull HttpServletResponse response, @NonNull FilterChain filterChain) throws jakarta.servlet.ServletException, IOException {
         X509Certificate[] certificates = (X509Certificate[]) request.getAttribute("jakarta.servlet.request.X509Certificate");
         if (certificates != null && certificates.length > 0) {
             X509Certificate certificate = certificates[0];
