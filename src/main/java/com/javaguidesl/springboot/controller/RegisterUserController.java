@@ -33,5 +33,4 @@ public class RegisterUserController {
             return new GlobalExceptionHandler().handleException(e);
         }
     }
-
 }
