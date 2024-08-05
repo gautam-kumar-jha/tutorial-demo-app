@@ -1,5 +1,6 @@
 package com.javaguidesl.springboot.config;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AbstractAuthenticationToken;
 import java.security.cert.X509Certificate;
 import java.util.Collections;

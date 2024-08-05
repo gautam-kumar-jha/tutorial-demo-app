@@ -13,9 +13,14 @@ import java.io.IOException;
 import java.security.cert.CertificateExpiredException;
 import java.security.cert.CertificateNotYetValidException;
 import java.security.cert.X509Certificate;
-import java.util.Arrays;
 
 public class CertificateValidationFilter extends OncePerRequestFilter {
+
+    private CertDetails certProperties;
+
+    public CertificateValidationFilter(CertDetails certProperties) {
+        this.certProperties =certProperties;
+    }
 
     @Override
     protected void doFilterInternal(@NonNull HttpServletRequest request, @NonNull HttpServletResponse response, @NonNull FilterChain filterChain) throws jakarta.servlet.ServletException, IOException {
@@ -39,8 +44,12 @@ public class CertificateValidationFilter extends OncePerRequestFilter {
     }
 
     private boolean validateCertificateSubject(String subject) {
-        String[] subjectLine = {"CN=gautam, OU=tutorial", "CN=gautam, OU=tutorial, O=tutorial, L=Noida, ST=UP, C=TT", "CN=client"};
-        return Arrays.asList(subjectLine).contains(subject);
+        for (String certName : certProperties.getNames()) {
+            if(certName.equals(subject)) {
+                return true;
+            }
+        }
+        return false;
     }
 
 }
